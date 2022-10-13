@@ -1,23 +1,29 @@
+The button component wraps the Vuetify implementation - check the [link to the API](https://vuetifyjs.com/en/api/v-btn/).
+
 Basic button:
 
 ```jsx
-<Button>{{$t("message.hello")}}</Button>
+<Button color="primary" size="large">{{$t("message.hello")}}</Button>
 ```
 
-Big pink button:
+Button also accepts icons as slots. An example using the `fab` prop:
 
 ```jsx
-<Button size="large" color="warning">
-  <v-icon>house</v-icon> {{$t("message.hello")}}
+<Button fab color="secondary" size="x-large">
+  <v-icon>house</v-icon>
 </Button>
 ```
 
-And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
-
-Fenced code blocks with `vue`, `js`, `jsx` or `javascript` languages are rendered as a interactive playgrounds:
+Loading button:
 
 ```jsx
-<Button>{{$t("message.hello")}}</Button>
+<Button loading></Button>
+```
+
+Disabled button:
+
+```jsx
+<Button disabled></Button>
 ```
 
 You can also use the Single File Component Format

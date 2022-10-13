@@ -1,17 +1,43 @@
+<template>
+	<div>
+		<v-btn
+		v-bind="$attrs"
+		:color="color"
+		:type="type"
+		:[computeSizeAttribute]="sizeValidator"
+		v-on="$listeners"
+    	>
+			<!-- pass through scoped slots -->
+			<template v-for="(_, scopedSlotName) in $scopedSlots" v-slot:[scopedSlotName]="slotData">
+				<slot :name="scopedSlotName" v-bind="slotData" />
+			</template>
+
+			<!-- pass through normal slots -->
+			<template v-for="(_, slotName) in $slots" v-slot:[slotName]>
+				<slot :name="slotName" />
+			</template>
+    	</v-btn>
+	</div>
+</template>
+
 <script>
 import { VBtn } from 'vuetify/lib'
 import loggerMixin from '../../mixins/loggerMixin'
+//import { FacebookLoader, RingLoader } from "vue-spinners-css"
 
 /**
- * The only true button.
+ * Button component.
  */
 export default {
 	name: 'Button',
-	extends: VBtn,
+	inheritAttrs: false,
+	components: {
+		VBtn
+	},
 	mixins: [loggerMixin],
 	props: {
 		/**
-		 * The color for the button.
+		 * The color of the button
 		 * @values primary, secondary, accent, error, info, success, warning
 		 *
 		 */
@@ -21,21 +47,28 @@ export default {
 		},
 		/**
 		 * The size of the button
-		 * @values small, normal, large
+		 * @values x-small, small, normal, large, x-large
 		 */
 		size: {
 			type: String,
 			default: 'normal'
 		},
 		/**
-		 * Gets called when the user clicks on the button
-		 * @ignore
+		 * Set the button's type attribute
+		 * @values button, submit, reset
 		 */
-		onClick: {
-			type: Function,
-			default: event => {
-				console.log('You have clicked me!', event.target)
-			}
+		 type: {
+			type: String,
+			default: 'button'
+		}
+	},
+	computed: {
+		sizeValidator() {
+			const sizeValues = ['x-small', 'small', 'large', 'x-large'];
+			return sizeValues.includes(this.size);
+		},
+		computeSizeAttribute() {
+			return this.sizeValidator ? this.size : null;
 		}
 	}
 }
