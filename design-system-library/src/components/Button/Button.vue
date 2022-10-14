@@ -22,7 +22,6 @@
 
 <script>
 import { VBtn } from 'vuetify/lib'
-import loggerMixin from '../../mixins/loggerMixin'
 //import { FacebookLoader, RingLoader } from "vue-spinners-css"
 
 /**
@@ -34,7 +33,6 @@ export default {
 	components: {
 		VBtn
 	},
-	mixins: [loggerMixin],
 	props: {
 		/**
 		 * The color of the button

@@ -24,7 +24,6 @@
 
 <script>
 import { VTextField } from 'vuetify/lib'
-import loggerMixin from '../../mixins/loggerMixin'
 
 /**
  * Text field component.
@@ -35,7 +34,6 @@ export default {
 	components: {
 		VTextField
 	},
-	mixins: [loggerMixin],
 	props: {
 		/**
 		 * Sets input label
